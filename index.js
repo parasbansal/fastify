@@ -1,13 +1,17 @@
 import Fastify from "fastify";
 
+import testRoute from "./routes/test.js";
+
 const fastify = Fastify({
   logger: true,
 });
 
 // Declare a route
-fastify.get("/", function (request, reply) {
+fastify.get("/", (request, reply) => {
   reply.send({ hello: "world" });
 });
+
+fastify.register(testRoute);
 
 // Run the server!
 fastify.listen({ port: 8082 }, function (err, address) {
